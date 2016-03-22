@@ -11,7 +11,7 @@ Jekyll::Hooks.register :site, :pre_render do |site|
     post.data['formats'] ||= {}
     # Jekyll does not do a simple merge of default values with post values, so
     # we cannot unset default formats in an ordinary way. Instead, we reject null values.
-    post.data['formats'].reject! { |_, v| !v }
+    post.data['formats'] = post.data['formats'].reject { |_, v| !v }
     prices = post.data['price'] || {}
     addresses = post.data['address'] || {}
     link_expiration_time = post.data['link-expiration-time'] || nil
@@ -50,7 +50,7 @@ Jekyll::Hooks.register :site, :pre_render do |site|
          'prices' => prices,
          'name' => format.upcase,
          'addresses' => addresses}
-      post.data['formats'][format].merge! format_info
+      post.data['formats'][format] = post.data['formats'][format].merge(format_info)
       post.data['format_array'] = post.data['formats'].map { |_, v| v }
     end
   end
