@@ -74,7 +74,7 @@ defaults:
       bucket: your-bucket-name
 ```
 
-Caveat: “default” values in Jekyll are actually not default values that can be simply overridden. Instead they get “deep merged” into post variables. If you want to unset a specific nested value in the `formats` hash, set it to `null`.
+Caveat: “default” values in Jekyll are actually not default values that can be simply overridden. Instead they get “deep merged” into post variables. If you want to unset a specific nested value inside the `formats` hash, set it to `false`.
 
 ### Change post template
 
@@ -130,7 +130,7 @@ layout: post
 title: Foo
 payment:
   price:
-    USD: null
+    USD: false
     XAU: 3
   address:
     bitcoin: 1Foo
@@ -139,9 +139,9 @@ formats:
   epub:
     paid_after: 15
   pdf:
-    # Setting this to null means that a post will be paid from the beginning.
+    # Setting this to false means that a post will be paid from the beginning.
     # If you want a format to be free instead, set this to 0.
-    paid_before: null
+    paid_before: false
   azw3: {}
 ```
 
