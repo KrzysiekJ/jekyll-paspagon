@@ -119,7 +119,7 @@ After doing the steps above, paid versions of your posts will be generated autom
 
 If you specify thresholds like `paid_before`, you will need to run `jekyll build` again after reaching them.
 
-You may override formats, buckets, prices and payment addresses for each post by putting the relevant data in the YAML front matter:
+You may override formats, assigned buckets, prices, payment addresses and link expiration times for each post by putting the relevant data in the YAML front matter:
 
 ```yaml
 layout: post
@@ -129,7 +129,7 @@ payment:
     USD: false
     XAU: 3
   address:
-    bitcoin: 1Foo
+    BTC: 1Foo
 bucket: foo
 formats:
   epub:
@@ -153,7 +153,7 @@ This command uploads missing or updated paid files to S3 and removes ones which 
 
 ## Markdown compatibility
 
-jekyll-paspagon uses Pandoc to generate formats other than HTML. The default input format is `markdown_github-hard_line_breaks`. It may be impacted by some site settings like Kramdown’s `hard_wrap`, but the most reliable it to set it explicitly in `_config.yml`:
+jekyll-paspagon uses Pandoc to generate formats other than HTML. The default input format is `markdown_github-hard_line_breaks`. It may be impacted by some site settings like Kramdown’s `hard_wrap`, but the most reliable way of changing it is setting it explicitly in `_config.yml`:
 
 ```yaml
 pandoc:
