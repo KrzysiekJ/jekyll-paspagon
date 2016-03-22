@@ -81,19 +81,19 @@ Caveat: “default” values in Jekyll are actually not default values that can 
 Inform your readers that you offer alternate post formats by modifying the post template. In a simple form the relevant fragment may look like this:
 
 ```liquid
-{% if page.formats %}
+{% unless page.formats == empty %}
   <p>Available formats:
     {% for format in page.format_array %}
       <a href="{{ format.full_url }}">{{ format.name }}</a>{% unless forloop.last %},{% endunless %}
     {% endfor %}
   </p>
-{% endif %}
+{% endunless %}
 ```
 
 A more sophisticated example, which uses the `page.excerpt_only` variable (set only when HTML is a paid format and a summary is being rendered):
 
 ```liquid
-{% if page.formats %}
+{% unless page.formats == empty %}
   <p>
     {% if page.excerpt_only %}
       Available formats:
@@ -106,7 +106,7 @@ A more sophisticated example, which uses the `page.excerpt_only` variable (set o
       {% endif %}
     {% endfor %}
   </p>
-{% endif %}
+{% endunless %}
 ```
 
 ### Change feed template
