@@ -18,10 +18,6 @@ group :jekyll_plugins do
 end
 ```
 
-### Configure S3 bucket
-
-Create a S3 bucket in the `s3-us-west-2` region (Oregon) and [grant Paspagon read access to it](http://paspagon.com/terms-seller/#step-1-grant-us-read-access-to-your-bucket), as described in Paspagon’s terms of service.
-
 ### Configure Paspagon
 
 To your `_config.yml`, add a section adhering to the following example:
