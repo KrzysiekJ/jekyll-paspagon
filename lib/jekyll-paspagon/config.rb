@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+require 'fileutils'
 
 class PaspagonConfig
   attr_reader :buckets, :formats, :full_config
@@ -40,7 +41,9 @@ class PaspagonConfig
     @buckets.each do |bucket_name, bucket_hash|
       bucket_config = bucket_hash.update('accept-terms' => @full_config['accept-terms'])
       ini = hash_to_ini bucket_config
-      dest = File.join(bucket_dest_dir(bucket_name), 'paspagon.ini')
+      bucket_dest_dir = bucket_dest_dir(bucket_name)
+      FileUtils.mkdir_p(bucket_dest_dir)
+      dest = File.join(bucket_dest_dir, 'paspagon.ini')
       ini_hash = Digest::SHA256.digest(ini)
       next if File.exist?(dest) && Digest::SHA256.file(dest).digest == ini_hash
       File.open(dest, 'wb') do |f|
