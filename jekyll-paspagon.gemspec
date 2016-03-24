@@ -2,7 +2,7 @@ require 'English'
 
 Gem::Specification.new do |s|
   s.name = 'jekyll-paspagon'
-  s.version = '1.0.2'
+  s.version = '1.0.3'
   s.author = 'Krzysztof Jurewicz'
   s.email = 'krzysztof.jurewicz@gmail.com'
   s.summary = 'Sell your Jekyll posts'

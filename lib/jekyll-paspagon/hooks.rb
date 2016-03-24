@@ -62,13 +62,13 @@ Jekyll::Hooks.register :posts, :post_write do |post|
   unless post.data['excerpt_only']
     post.data['formats'].each do |format, format_config|
       puts("Generated #{format_config['path']}.") if maybe_generate_doc(post, format)
-      attrs = format_xattrs(format_config)
+      attrs = format_xattrs(format, format_config)
       sync_payment_attributes(format_config['path'], attrs)
     end
   end
 end
 
-def format_xattrs(format_config)
+def format_xattrs(format, format_config)
   attrs = {}
   format_config['prices'].each do |currency, price|
     attrs["user.x-amz-meta-price-#{currency}"] = price if price
@@ -78,8 +78,18 @@ def format_xattrs(format_config)
   end
   attrs['user.x-amz-meta-link-expiration-time'] = format_config['link_expiration_time'] if format_config['link_expiration_time']
   attrs['user.content-disposition'] = format_config['content_disposition'] if format_config['content_disposition']
-  attrs['user.content-type'] = format_config['content_type'] if format_config['content_type']
+  attrs['user.content-type'] = format_config['content_type'] || default_content_type(format)
   attrs
+end
+
+def default_content_type(format)
+  content_types =
+    {'epub' => 'application/epub+zip',
+     'html' => 'text/html',
+     'mobi' => 'application/x-mobipocket-ebook',
+     'pdf' => 'application/pdf'}
+  content_types.default = 'application/octet-stream'
+  content_types[format]
 end
 
 def sync_payment_attributes(path, attrs)

@@ -64,6 +64,9 @@ defaults:
           paid_after: 15 # HTML version will be paid 15 days after publication.
         pdf:
           content_disposition: attachment
+          # If you don’t provide content type, the plugin will try to set a
+          # reasonable default for some popular formats, falling back to
+          # application/octet-stream if necessary.
           content_type: application/pdf
           paid_before: 2 # PDF version will be paid for the first two days.
         epub: {} # EPUB version will be paid from the beginning.
