@@ -103,10 +103,14 @@ module Jekyll
             to_upload.each do |p|
               puts("Uploading #{p} to bucket #{bucket_name}…")
               xattr = Xattr.new(p)
-              metadata = xattr.as_json.select { |k, _| k.start_with?('user.') }.map { |k, v| [k.sub(/^user./, ''), v] }.to_h
-              bucket.put_object(body: File.open(p),
-                                metadata: metadata,
-                                key: p)
+              user_metadata = xattr.as_json.select { |k, _| k.start_with?('user.x-amz-meta-') }.map { |k, v| [k.sub(/^user./, ''), v] }.to_h
+              options =
+                {body: File.open(p),
+                 metadata: user_metadata,
+                 key: p}
+              options[:content_disposition] = xattr['user.content-disposition'] if xattr['user.content-disposition']
+              options[:content_type] = xattr['user.content-type'] if xattr['user.content-type']
+              bucket.put_object(options)
             end
           end
         end
