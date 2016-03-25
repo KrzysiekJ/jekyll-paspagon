@@ -103,7 +103,7 @@ module Jekyll
             to_upload.each do |p|
               puts("Uploading #{p} to bucket #{bucket_name}…")
               xattr = Xattr.new(p)
-              user_metadata = xattr.as_json.select { |k, _| k.start_with?('user.x-amz-meta-') }.map { |k, v| [k.sub(/^user./, ''), v] }.to_h
+              user_metadata = xattr.as_json.select { |k, _| k.start_with?('user.x-amz-meta-') }.map { |k, v| [k.sub(/^user.x-amz-meta-/, ''), v] }.to_h
               options =
                 {body: File.open(p),
                  metadata: user_metadata,
