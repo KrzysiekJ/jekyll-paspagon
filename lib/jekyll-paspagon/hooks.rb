@@ -157,7 +157,7 @@ def generation_command(post, format, _format_config, dest_path)
   case format
   when 'azw3', 'mobi', 'pdf'
     intermediary_path = File.join(Dir.tmpdir, Digest::SHA256.hexdigest(dest_path) + '.epub')
-    "pandoc #{post.path} -f #{input_format} -t epub -o #{intermediary_path} && ebook-convert #{intermediary_path} #{dest_path} > /dev/null && rm #{intermediary_path}"
+    "pandoc #{post.path} -f #{input_format} -t epub -o #{intermediary_path} && ebook-convert #{intermediary_path} #{dest_path} --start-reading-at \"//h:h1[not(contains (@class, 'title'))]\" > /dev/null && rm #{intermediary_path}"
   else
     "pandoc #{post.path} -f #{input_format} -t #{format} -o #{dest_path}"
   end
