@@ -156,11 +156,11 @@ This command uploads missing or updated paid files to S3 and removes ones which 
 
 ## Markdown compatibility
 
-jekyll-paspagon uses Pandoc to generate formats other than HTML. The default input format is `markdown_github-hard_line_breaks`. It may be impacted by some site settings like Kramdown’s `hard_wrap`, but the most reliable way of changing it is setting it explicitly in `_config.yml`:
+jekyll-paspagon uses Pandoc to generate formats other than HTML. The default input format is `markdown_github+yaml_metadata_block-hard_line_breaks`. It may be impacted by some site settings like Kramdown’s `hard_wrap`, but the most reliable way of changing it is setting it explicitly in `_config.yml`:
 
 ```yaml
 pandoc:
-  input: markdown_phpextra-fenced_code_blocks+strikeout
+  input: markdown_phpextra+yaml_metadata_block-fenced_code_blocks+strikeout
 ```
 
 For more information, refer to [Pandoc’s documentation on Markdown](http://pandoc.org/README.html#pandocs-markdown).

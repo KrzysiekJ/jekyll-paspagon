@@ -167,7 +167,7 @@ def pandoc_input_format(site)
   (site.config['pandoc'] || {})['input'] ||
     begin
       kramdown = site.config['kramdown'] || {}
-      format = 'markdown_github'
+      format = 'markdown_github+yaml_metadata_block'
       format += '-hard_line_breaks' unless kramdown['hard_wrap']
       format
     end
