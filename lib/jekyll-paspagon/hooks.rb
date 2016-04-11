@@ -136,7 +136,7 @@ def generate_doc(post, format, format_config, dest_path)
   case format
   when 'html'
     if format_config['paid']
-      free_dest = post.destination
+      free_dest = post.destination(post.site.config['destination'])
       system("mv #{free_dest} #{dest_path}")
       post.content = post.data['excerpt'].output
       post.data['excerpt_only'] = true
