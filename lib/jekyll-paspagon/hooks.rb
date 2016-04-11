@@ -110,7 +110,9 @@ def maybe_generate_doc(post, format)
   FileUtils.mkdir_p(File.dirname(dest_path))
   if File.exist?(dest_path)
     source_path = post.path
-    if File.ctime(source_path) > File.ctime(dest_path)
+    # HTML output depends on baseurl parameter which may be specified using command line, so checking change time
+    # is not sufficient in this case.
+    if format == 'html' || File.ctime(source_path) > File.ctime(dest_path)
       temp_path = File.join(Dir.tmpdir, Digest::SHA256.hexdigest(dest_path) + '.' + format)
       generate_doc(post, format, format_config, temp_path)
       temp_hash = Digest::SHA256.file(temp_path)

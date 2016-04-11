@@ -114,7 +114,13 @@ If you provide a RSS/Atom feed, you may want to ensure that it contains only pos
 
 ### Generate full URLs everywhere
 
-If you’re going to sell HTML versions of your posts (which will be hosted on a different domain), you should ensure that links on your website contain the domain. The easiest way to do it is to remove all occurences of `site.url` from the templates (usually in `feed.xml` and `_includes/head.html`) and add the domain to the `baseurl` setting.
+If you’re going to sell HTML versions of your posts (which will be hosted on a different domain), you should ensure that links on your website contain the domain. The easiest way to do it is to remove all occurences of `site.url` from the templates (usually in `feed.xml` and `_includes/head.html`), add the domain to the `baseurl` setting in `_config.yml` and use its old value only when running jekyll serve:
+
+```shell
+jekyll serve --baseurl ''
+```
+
+Remember to run `jekyll build` before each deployment.
 
 ## Usage
 
