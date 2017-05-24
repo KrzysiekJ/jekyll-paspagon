@@ -1,6 +1,6 @@
 # jekyll-paspagon
 
-This [Jekyll](http://jekyllrb.com) plugin allows you to sell blog posts in various formats (HTML, EPUB, AZW3, MOBI, PDF and more) for [Bitcoin](https://bitcoin.org) and [BlackCoin](http://blackcoin.co), using Amazon S3 and [Paspagon](http://paspagon.com).
+This [Jekyll](http://jekyllrb.com) plugin allows you to sell blog posts in various formats (HTML, EPUB, AZW3, MOBI, PDF and more) for [BlackCoin](http://blackcoin.co), using Amazon S3 and [Paspagon](http://paspagon.com).
 
 ## Installation
 
@@ -35,13 +35,12 @@ paspagon:
       payment:
         # This section provides default values that you can override for each post.
         #
-        # You can specify prices in BTC, BLK, XAU (troy ounce of gold) and some
+        # You can specify prices in BLK, BTC, XAU (troy ounce of gold) and some
         # other currencies (see Paspagon’s terms of service for a complete list).
         # (Paspagon takes only one price into account).
         price:
           USD: 3
         address:
-          BTC: 1your-address
           BLK: Byour-address
         # Time (in seconds) after which download link will expire.
         link-expiration-time: 600
@@ -138,7 +137,7 @@ payment:
     USD: false
     XAU: 3
   address:
-    BTC: 1Foo
+    BLK: Bfoo
 bucket: foo
 formats:
   epub:
